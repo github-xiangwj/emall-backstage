@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>emall</artifactId>
+  <name>emall</name>
+  <packaging>war</packaging>
+  <parent>
+  	<groupId>com.platform.security</groupId>
+  	<artifactId>platform-security</artifactId>
+  	<version>1.0.0-SNAPSHOT</version>
+  </parent>
+  
+  <properties>                                                                                                
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>                                  
+     <spring.version>4.1.4.RELEASE</spring.version>                                                      
+     <hibernate.version>4.3.8.Final</hibernate.version>                                                  
+     <jackson.version>2.5.0</jackson.version>                                                            
+  </properties>  
+
+  <dependencies>
+  	<dependency>
+  		<groupId>com.platform.security</groupId>
+  		<artifactId>platform-security-browser</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+	<dependency>
+	    <groupId>io.springfox</groupId>
+	    <artifactId>springfox-swagger2</artifactId>
+	    <version>2.7.0</version>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+	<dependency>
+	    <groupId>io.springfox</groupId>
+	    <artifactId>springfox-swagger-ui</artifactId>
+	    <version>2.7.0</version>
+	</dependency>
+	
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-contract-wiremock</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <scope>provided</scope>
+      </dependency>
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-maven-plugin</artifactId>
+  			<version>1.3.3.RELEASE</version>
+  			<executions>
+  				<execution>
+  					<goals>
+  						<goal>repackage</goal>
+  					</goals>
+  				</execution>
+  			</executions>
+  		</plugin>
+  		<plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <mainClass>com.emall.DemoApplication</mainClass>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
+  	</plugins>
+  	<finalName>emall</finalName>
+  </build>
+  
+
+  <!--定义snapshots库和releases库的nexus地址-->
+  <distributionManagement>
+      <repository>
+          <id>nexus-releases</id>
+          <url>
+              http://127.0.0.1:8081/nexus/content/repositories/releases/
+          </url>
+      </repository>
+      <snapshotRepository>
+          <id>nexus-snapshots</id>
+          <url>
+              http://127.0.0.1:8081/nexus/content/repositories/snapshots/
+          </url>
+      </snapshotRepository>
+  </distributionManagement>
+
+</project>
